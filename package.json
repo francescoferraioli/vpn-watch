@@ -2,10 +2,9 @@
   "name": "vpn-watch",
   "version": "1.0.0",
   "description": "Monitor and maintain VPN connectivity",
-  "main": "dist/index.js",
+  "main": "src/index.ts",
   "scripts": {
-    "build": "tsc",
-    "start": "node dist/index.js"
+    "start": "tsx src/index.ts"
   },
   "dependencies": {
     "node-cmd": "^5.0.0"
@@ -13,6 +12,7 @@
   "devDependencies": {
     "@types/node": "^20.11.24",
     "@types/node-cmd": "^5.0.0",
+    "tsx": "^4.7.1",
     "typescript": "^5.3.3"
   }
 } 

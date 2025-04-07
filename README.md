@@ -13,11 +13,6 @@ npm install
    - Open `src/index.ts`
    - Replace `'Your VPN Name'` with your actual VPN name
 
-3. Build the project:
-```bash
-npm run build
-```
-
 ## Usage
 
 Run the script:
