@@ -2,13 +2,13 @@ import cmd from 'node-cmd';
 
 interface VpnConfig {
   check_interval_ms: number;
-  vpn_name: string;
 }
 
 const config: VpnConfig = {
   check_interval_ms: 30000, // Check every 30 seconds
-  vpn_name: 'Your VPN Name' // Replace with your VPN name
 };
+
+const vpn_name = process.argv[2];
 
 async function check_vpn_connection(): Promise<boolean> {
   return new Promise((resolve) => {
@@ -20,7 +20,7 @@ async function check_vpn_connection(): Promise<boolean> {
       }
 
       // Check if VPN is connected by looking for the VPN name in the output
-      const is_connected = data.includes(config.vpn_name);
+      const is_connected = data.includes(vpn_name);
       resolve(is_connected);
     });
   });
@@ -28,13 +28,13 @@ async function check_vpn_connection(): Promise<boolean> {
 
 async function connect_to_vpn(): Promise<void> {
   return new Promise((resolve, reject) => {
-    cmd.run(`netsh wlan connect name="${config.vpn_name}"`, (err: Error | null) => {
+    cmd.run(`netsh wlan connect name="${vpn_name}"`, (err: Error | null) => {
       if (err) {
         console.error('Error connecting to VPN:', err);
         reject(err);
         return;
       }
-      console.log(`Connected to VPN: ${config.vpn_name}`);
+      console.log(`Connected to VPN: ${vpn_name}`);
       resolve();
     });
   });
