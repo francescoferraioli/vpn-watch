@@ -12,7 +12,7 @@ const config: VpnConfig = {
 
 async function check_vpn_connection(): Promise<boolean> {
   return new Promise((resolve) => {
-    cmd.get('netsh wlan show interfaces', (err: Error | null, data: string) => {
+    cmd.run('netsh wlan show interfaces', (err: Error | null, data: string) => {
       if (err) {
         console.error('Error checking VPN status:', err);
         resolve(false);
@@ -28,7 +28,7 @@ async function check_vpn_connection(): Promise<boolean> {
 
 async function connect_to_vpn(): Promise<void> {
   return new Promise((resolve, reject) => {
-    cmd.get(`netsh wlan connect name="${config.vpn_name}"`, (err: Error | null) => {
+    cmd.run(`netsh wlan connect name="${config.vpn_name}"`, (err: Error | null) => {
       if (err) {
         console.error('Error connecting to VPN:', err);
         reject(err);
